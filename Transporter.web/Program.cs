@@ -1,5 +1,6 @@
 using Transporter.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Transporter.web
 {
@@ -15,8 +16,8 @@ namespace Transporter.web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddAuthentication("Cookies")
-                .AddCookie("Cookies", options =>
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
                     {
                         options.LoginPath = "/Account/Login";
                         options.AccessDeniedPath = "/Account/AccessDenied";
